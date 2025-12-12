@@ -1,59 +1,93 @@
-# EmployeeFrontend
+# EmployeeFrontend- This is the Fronted of the Full-stack CRUD Assignment
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+ About the Project:- This is a full-stack CRUD application built with:
 
-## Development server
+- Frontend: Angular 21 
+- Backend: Spring Boot (Java)  
+- Database: MySQL  
 
-To start a local development server, run:
+The application allows users to **add, edit, delete, search, sort & paginate employees** in a responsive UI.
 
-```bash
-ng serve
-```
+# Requirements:-
+Make sure you have these installed:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Backend Requirements
+- Java 17+
+- Maven 3.8+
+- MySQL 8+
+- Postman (optional)
 
-## Code scaffolding
+### Frontend Requirements
+- Node.js 24
+- Angular CLI 21
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+#  Backend Setup (Spring Boot)
 
-```bash
-ng generate component component-name
-```
+1. Import Database
+Create a MySQL schema:
+CREATE DATABASE employee_db;
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+This README provides everything to install, run and understand the project.
+2.Update Database Credentials inside:-
+Backend/employee-management/src/main/resources/application.properties
 
-```bash
-ng generate --help
-```
+e.g. spring.datasource.url=jdbc:mysql://localhost:3306/employee_db
+spring.datasource.username=root
+spring.datasource.password=YOUR_PASSWORD
+spring.jpa.hibernate.ddl-auto=update
 
-## Building
+3.Run the backend:- 
+Open Terminal :
+cd Backend/employee-management
+mvn spring-boot:run
 
-To build the project run:
+4.Backend Starts at:-
+http://localhost:8080
 
-```bash
-ng build
-```
+Necessary API Endpoints:- 
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+| Method | Endpoint              | Description       |
+| ------ | --------------------- | ----------------- |
+| GET    | `/api/employees`      | Get all employees |
+| POST   | `/api/employees`      | Add employee      |
+| PUT    | `/api/employees/{id}` | Update employee   |
+| DELETE | `/api/employees/{id}` | Delete employee   |
 
-## Running unit tests
+## Frontend Seup (Angular) 
+1. Install Dependencies :-
+   cd Frontend/employee-frontend
+   npm install
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+2.Update Backend URl (if needed)
+inside: src/app/services/employee.ts
+set: src/app/services/employee.ts
 
-```bash
-ng test
-```
+3.Run Angular app:-
+ng serve -o
+it opens at:- http://localhost:4200
 
-## Running end-to-end tests
+## How to Run the Full Application
+1. Start MySQL
+2. Start Springboot Backend:- mvn spring-boot:run
+3. Start Angular Frontend:- ng serve -o
+Features Implemented
+Backend:-
+1.CRUD Operations
+2. REST APIs
+3. MySQL Integration
+4. Layered Architechture (Controller----> Service-----> Repository)
 
-For end-to-end (e2e) testing, run:
+Frontend:-
+1. Add Employee
+2. Edit Employee
+3. Delete Employee
+4. Pagination
+5. Sorting
+6. Searching
+7. Responsive UI
+8. Dashboard cards
 
-```bash
-ng e2e
-```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
