@@ -23,11 +23,8 @@ Make sure you have these installed:
 
 #  Backend Setup (Spring Boot)
 
-1. Import Database
-Create a MySQL schema:
-CREATE DATABASE employee_db;
+1. Import Database(as explained in the backend repo.)
 
-This README provides everything to install, run and understand the project.
 2.Update Database Credentials inside:-
 Backend/employee-management/src/main/resources/application.properties
 
@@ -87,7 +84,7 @@ Frontend:-
 7. Responsive UI
 8. Dashboard cards
 
-
+This README provides everything to install, run and understand the project.
 
 
 
