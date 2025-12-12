@@ -1,0 +1,16 @@
+* {
+  font-family: 'Inter', sans-serif;
+
+body {
+  background-color: #0f172a; 
+  color: #e2e8f0; 
+}
+
+.container {
+  color: inherit;
+}
+
+* {
+  transition: 0.2s ease;
+}
+}

@@ -1,0 +1,104 @@
+<div class="form-container">
+  <h2>Add New Employee</h2>
+
+  <form (ngSubmit)="onSubmit()" #empForm="ngForm">
+
+    <!-- FULL NAME -->
+    <input 
+      type="text" 
+      placeholder="Full Name" 
+      [(ngModel)]="employee.fullName"
+      name="fullName"
+      required
+      minlength="3"
+      #fullName="ngModel"
+    />
+    <div class="error" *ngIf="fullName.invalid && fullName.touched">
+      Full name must be at least 3 characters.
+    </div>
+
+    <!-- EMAIL -->
+    <input 
+      type="email"
+      placeholder="Email"
+      [(ngModel)]="employee.email"
+      name="email"
+      required
+      email
+      #email="ngModel"
+    />
+    <div class="error" *ngIf="email.invalid && email.touched">
+      Enter a valid email address.
+    </div>
+
+    <!-- MOBILE -->
+    <input 
+      type="text"
+      placeholder="Mobile"
+      [(ngModel)]="employee.mobile"
+      name="mobile"
+      required
+      minlength="10"
+      maxlength="10"
+      pattern="[0-9]*"
+      #mobile="ngModel"
+    />
+    <div class="error" *ngIf="mobile.invalid && mobile.touched">
+      Mobile number must be 10 digits.
+    </div>
+
+    <!-- DEPARTMENT -->
+    <input 
+      type="text"
+      placeholder="Department"
+      [(ngModel)]="employee.department"
+      name="department"
+      required
+      #department="ngModel"
+    />
+    <div class="error" *ngIf="department.invalid && department.touched">
+      Department is required.
+    </div>
+
+    <!-- DESIGNATION -->
+    <input 
+      type="text"
+      placeholder="Designation"
+      [(ngModel)]="employee.designation"
+      name="designation"
+      required
+      #designation="ngModel"
+    />
+    <div class="error" *ngIf="designation.invalid && designation.touched">
+      Designation is required.
+    </div>
+
+    <!-- DATE OF JOINING -->
+    <input 
+      type="date"
+      [(ngModel)]="employee.dateOfJoining"
+      name="dateOfJoining"
+      required
+      #dateOfJoining="ngModel"
+    />
+    <div class="error" *ngIf="dateOfJoining.invalid && dateOfJoining.touched">
+      Please select a valid date.
+    </div>
+
+    <!-- STATUS -->
+    <select [(ngModel)]="employee.status" name="status" required>
+      <option value="Active">Active</option>
+      <option value="Inactive">Inactive</option>
+    </select>
+
+    <!-- SUBMIT BUTTON (DISABLED IF INVALID) -->
+    <button 
+      type="submit" 
+      class="save-btn"
+      [disabled]="empForm.invalid || isLoading"
+    >
+      {{ isLoading ? 'Saving...' : 'Save' }}
+    </button>
+
+  </form>
+</div>

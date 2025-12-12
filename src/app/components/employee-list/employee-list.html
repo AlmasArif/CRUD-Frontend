@@ -1,0 +1,95 @@
+
+<div class="container">
+    <!-- DASHBOARD CARDS -->
+<h3 class="insights-title">Employee Insights</h3>
+
+    <div class="dashboard">
+  <div class="card total">
+    <h3>{{ totalEmployees }}</h3>
+    <p>Total Employees</p>
+  </div>
+
+  <div class="card active">
+    <h3>{{ activeEmployees }}</h3>
+    <p>Active</p>
+  </div>
+
+  <div class="card inactive">
+    <h3>{{ inactiveEmployees }}</h3>
+    <p>Inactive</p>
+  </div>
+
+  <div class="card dept">
+    <h3>{{ departmentCount }}</h3>
+    <p>Departments</p>
+  </div>
+</div>
+
+  <div class="header-row">
+    <h2 class="title centered-title">Employee List</h2>
+  <button class="add-btn" routerLink="/add">Add Employee</button>
+</div>
+ </div>
+
+  <div class="controls">
+    <input type="text" placeholder="Search by name / email / dept / designation"
+           [(ngModel)]="searchTerm" (ngModelChange)="goToPage(1)" />
+    <div class="page-size">
+      <label>Rows:</label>
+      <select [(ngModel)]="pageSize" (ngModelChange)="goToPage(1)">
+        <option [value]="5">5</option>
+        <option [value]="10">10</option>
+        <option [value]="20">20</option>
+      </select>
+    </div>
+  </div>
+
+<div class="table-wrapper">
+    <table class="styled-table" *ngIf="pagedEmployees.length; else emptyState">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Department</th>
+        <th>Designation</th>
+        <th>Date Of Joining</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let emp of pagedEmployees">
+        <td>{{ emp.id }}</td>
+        <td>{{ emp.fullName }}</td>
+        <td>{{ emp.email }}</td>
+        <td>{{ emp.mobile }}</td>
+        <td>{{ emp.department }}</td>
+        <td>{{ emp.designation }}</td>
+        <td>{{ emp.dateOfJoining || '-' }}</td>
+        <td>
+          <span class="status" [class.active]="emp.status === 'Active'"
+                               [class.inactive]="emp.status !== 'Active'">
+            {{ emp.status }}
+          </span>
+        </td>
+        <td class="actions">
+          <button class="edit-btn" [routerLink]="['/edit', emp.id]">Edit</button>
+          <button class="delete-btn" (click)="deleteEmployee(emp.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #emptyState>
+    <p class="empty">No records to show.</p>
+  </ng-template>
+
+  <div class="pagination" *ngIf="filteredEmployees.length > pageSize">
+    <button (click)="prevPage()" [disabled]="page === 1">Prev</button>
+    <span>Page {{page}} / {{ totalPages() }}</span>
+    <button (click)="nextPage()" [disabled]="page === totalPages()">Next</button>
+  </div>
+</div>
